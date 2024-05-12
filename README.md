@@ -1,5 +1,23 @@
 # DelayedPLIER
 
+## Setup using miniconda
+
+```bash
+conda create -c conda-forge -n delayedplier r-base r-essentials r-devtools
+conda activate delayedplier
+```
+
+Open R and run:
+
+```r
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("DelayedMatrixStats")
+BiocManager::install("BiocSingular")
+BiocManager::install("TENxPBMCData")
+```
+
 ## Example
 
 We first create a toy example using an available large-scale scRNA-seq
