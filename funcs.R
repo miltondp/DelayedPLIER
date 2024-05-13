@@ -572,9 +572,18 @@ for ( i in 1:max.iter){
   rownames(out$B)=nameB(out)
   
   #residual, B, Z DelayedArray
+  dir.create(output_path, showWarnings = FALSE)
   writeHDF5Array(out$residual, filepath = paste0(output_path, "residual.hdf5"), name = "count")
   writeHDF5Array(out$B, filepath = paste0(output_path, "B.hdf5"), name = "count")
   writeHDF5Array(out$Z, filepath = paste0(output_path, "Z.hdf5"), name = "count")
+
+  writeHDF5Array(svdres$d, filepath = paste0(output_path, "svdres-d.hdf5"), name = "count")
+  writeHDF5Array(svdres$v, filepath = paste0(output_path, "svdres-v.hdf5"), name = "count")
+
+  saveRDS(out$withPrior, file.path(output_path, "withPrior.rds"))
+  saveRDS(out$Uauc, file.path(output_path, "Uauc.rds"))
+  saveRDS(out$Up, file.path(output_path, "Up.rds"))
+  saveRDS(out$summary, file.path(output_path, "summary.rds"))
   
   out
 }#PLIER
